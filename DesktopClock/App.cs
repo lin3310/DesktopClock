@@ -1,10 +1,14 @@
+// MIT License
+// Copyright (c) 2026 lin3310 (林楷庭)
+// SPDX-License-Identifier: MIT
+
 using System;
 using System.CodeDom.Compiler;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows;
 
-namespace DesktopClock;
+namespace DesktopClock; 
 
 public class App : Application
 {

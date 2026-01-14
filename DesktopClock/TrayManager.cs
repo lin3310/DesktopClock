@@ -6,6 +6,10 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Resources;
 
+// MIT License
+// Copyright (c) 2026 lin3310 (林楷庭)
+// SPDX-License-Identifier: MIT
+
 namespace DesktopClock;
 
 public class TrayManager : IDisposable

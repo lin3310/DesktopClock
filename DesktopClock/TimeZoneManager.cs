@@ -5,6 +5,10 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
+// MIT License
+// Copyright (c) 2026 lin3310 (林楷庭)
+// SPDX-License-Identifier: MIT
+
 namespace DesktopClock;
 
 public static class TimeZoneManager

@@ -5,6 +5,14 @@
     <OutputType>WinExe</OutputType>
     <UseWPF>True</UseWPF>
     <TargetFramework>net8.0</TargetFramework>
+
+    <!-- Package / Repo metadata -->
+    <Authors>林楷庭</Authors>
+    <Company>lin3310</Company>
+    <PackageProjectUrl>https://github.com/lin3310/DesktopClock</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/lin3310/DesktopClock</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
   <PropertyGroup>
     <LangVersion>10.0</LangVersion>

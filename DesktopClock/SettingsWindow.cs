@@ -1,3 +1,7 @@
+// MIT License
+// Copyright (c) 2026 lin3310 (林楷庭)
+// SPDX-License-Identifier: MIT
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
