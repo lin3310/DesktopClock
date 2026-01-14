@@ -1,0 +1,39 @@
+# Build Folders
+bin/
+obj/
+
+# Rider / IntelliJ
+*.sln.iml
+.idea/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userprefs
+
+# Rider
+*.DotSettings.user
+
+# Mono
+*.log
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# NuGet
+*.nupkg
+packages/
+
+# Publish outputs
+publish/
+
+# Debug
+*.pdb
+*.dll
+*.exe
+
+# Others
+*.vsix
+.vscode/

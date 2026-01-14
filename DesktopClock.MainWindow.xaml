@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="DesktopClock.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="桌面時鐘" Icon="Resources/clock_icon.png" WindowStyle="None" AllowsTransparency="True" Background="#00FFFFFF" Topmost="True" ShowInTaskbar="False" ResizeMode="NoResize" SizeToContent="WidthAndHeight" MinWidth="200" MinHeight="100" WindowStartupLocation="Manual" xmlns:desktopclock="clr-namespace:DesktopClock;assembly=DesktopClock">
+  <Grid Name="MainGrid">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30">
+      <TextBlock Name="ClockText" Text="00:00:00" FontSize="120" FontWeight="Light" Foreground="#FFFFFFFF" HorizontalAlignment="Center" TextAlignment="Center">
+        <UIElement.Effect>
+          <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="2" Opacity="0.8" RenderingBias="Performance" />
+        </UIElement.Effect>
+      </TextBlock>
+      <TextBlock Name="DateText" Text="" FontSize="32" FontWeight="Light" Foreground="#FFFFFFFF" HorizontalAlignment="Center" TextAlignment="Center" Visibility="Collapsed" Margin="0,-10,0,0">
+        <UIElement.Effect>
+          <DropShadowEffect Color="Black" BlurRadius="6" ShadowDepth="1" Opacity="0.6" RenderingBias="Performance" />
+        </UIElement.Effect>
+      </TextBlock>
+    </StackPanel>
+  </Grid>
+</Window>

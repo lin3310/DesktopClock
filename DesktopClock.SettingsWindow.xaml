@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="DesktopClock.SettingsWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="桌面時鐘設置" Height="520" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FAFAFA" xmlns:desktopclock="clr-namespace:DesktopClock;assembly=DesktopClock">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <Style x:Key="{x:Type TextBlock}" TargetType="{x:Type TextBlock}">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="#2D2D2D" />
+        <Setter Property="FontSize" Value="13" />
+      </Style>
+      <Style x:Key="{x:Type GroupBox}" TargetType="{x:Type GroupBox}">
+        <Setter Property="Margin" Value="0,0,0,12" />
+        <Setter Property="Padding" Value="12" />
+        <Setter Property="BorderBrush" Value="#E0E0E0" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="#FFFFFFFF" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+      </Style>
+      <Style x:Key="{x:Type Slider}" TargetType="{x:Type Slider}">
+        <Setter Property="Slider.IsMoveToPointEnabled" Value="False" />
+      </Style>
+      <Style x:Key="PrimaryButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#0078D4" />
+        <Setter Property="Foreground" Value="#FFFFFFFF" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="16,8" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FrameworkElement.Cursor" Value="Hand" />
+      </Style>
+      <Style x:Key="SecondaryButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#F0F0F0" />
+        <Setter Property="Foreground" Value="#333" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="#CCC" />
+        <Setter Property="Padding" Value="16,8" />
+        <Setter Property="FrameworkElement.Cursor" Value="Hand" />
+      </Style>
+      <Style x:Key="DangerButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#DC3545" />
+        <Setter Property="Foreground" Value="#FFFFFFFF" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="12,6" />
+        <Setter Property="FrameworkElement.Cursor" Value="Hand" />
+      </Style>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <Grid Margin="12">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <TabControl Grid.Row="0" BorderThickness="0" Background="#00FFFFFF" Padding="0">
+      <TabItem Header="⚙️ 基本" FontSize="14" FontWeight="SemiBold">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="4">
+          <StackPanel Margin="8">
+            <Border Name="InstallPanel" Background="#E3F2FD" BorderBrush="#2196F3" BorderThickness="1" CornerRadius="6" Padding="12" Margin="0,0,0,12" Visibility="Collapsed">
+              <DockPanel>
+                <StackPanel DockPanel.Dock="Left" Width="230">
+                  <TextBlock Text="💡 免安裝模式" FontWeight="Bold" Foreground="#0D47A1" />
+                  <TextBlock Text="設定可能無法永久保存" Foreground="#1565C0" FontSize="11" />
+                </StackPanel>
+                <Button Content="安裝到系統" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Click="OnInstallClick" />
+              </DockPanel>
+            </Border>
+            <Border Name="UninstallPanel" Background="#FFF3E0" BorderBrush="#FF9800" BorderThickness="1" CornerRadius="6" Padding="12" Margin="0,0,0,12" Visibility="Collapsed">
+              <DockPanel>
+                <StackPanel DockPanel.Dock="Left" Width="230">
+                  <TextBlock Text="🗑️ 解除安裝" FontWeight="Bold" Foreground="#E65100" />
+                  <TextBlock Text="移除程式並清除設定" Foreground="#F57C00" FontSize="11" />
+                </StackPanel>
+                <Button Content="解除安裝" Style="{StaticResource DangerButton}" HorizontalAlignment="Right" Click="OnUninstallClick" />
+              </DockPanel>
+            </Border>
+            <GroupBox Header="📝 文字設置">
+              <StackPanel>
+                <TextBlock Text="字體:" Margin="0,0,0,5" FontWeight="Normal" />
+                <ComboBox Name="FontFamilyCombo" Margin="0,0,0,12" Height="28" />
+                <DockPanel Margin="0,0,0,5">
+                  <TextBlock Text="時鐘大小:" DockPanel.Dock="Left" FontWeight="Normal" />
+                  <TextBlock Name="FontSizeText" Text="120" DockPanel.Dock="Right" Foreground="#0078D4" FontWeight="Bold" />
+                </DockPanel>
+                <Slider Name="FontSizeSlider" Minimum="60" Maximum="300" Value="120" TickFrequency="10" IsSnapToTickEnabled="True" SmallChange="10" LargeChange="30" Margin="0,0,0,12" />
+                <CheckBox Name="ShowSecondsCheckBox" Content="顯示秒數" Margin="0,5,0,5" />
+                <CheckBox Name="ShowDateCheckBox" Content="顯示日期" Margin="0,5,0,5" />
+                <StackPanel Name="DateFormatPanel" Orientation="Horizontal" Margin="24,0,0,0">
+                  <TextBlock Text="格式:" FontWeight="Normal" Margin="0,0,8,0" />
+                  <ComboBox Name="DateFormatComboBox" Width="140">
+                    <ComboBoxItem Content="01/07 Tue" Tag="MM/dd ddd" />
+                    <ComboBoxItem Content="2026/01/07" Tag="yyyy/MM/dd" />
+                    <ComboBoxItem Content="01-07" Tag="MM-dd" />
+                    <ComboBoxItem Content="星期二" Tag="dddd" />
+                    <ComboBoxItem Content="1月7日" Tag="M月d日" />
+                  </ComboBox>
+                </StackPanel>
+              </StackPanel>
+            </GroupBox>
+            <GroupBox Header="📍 位置控制">
+              <StackPanel>
+                <DockPanel Margin="0,0,0,8">
+                  <TextBlock Text="水平 (X):" DockPanel.Dock="Left" FontWeight="Normal" Width="60" />
+                  <TextBlock DockPanel.Dock="Right" Width="40" TextAlignment="Right" Text="{Binding ElementName=PosXSlider, Path=Value, StringFormat=N0}" />
+                  <Slider Name="PosXSlider" Minimum="0" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True" SmallChange="1" LargeChange="10" ValueChanged="OnPositionSliderChanged" />
+                </DockPanel>
+                <DockPanel Margin="0,0,0,12">
+                  <TextBlock Text="垂直 (Y):" DockPanel.Dock="Left" FontWeight="Normal" Width="60" />
+                  <TextBlock DockPanel.Dock="Right" Width="40" TextAlignment="Right" Text="{Binding ElementName=PosYSlider, Path=Value, StringFormat=N0}" />
+                  <Slider Name="PosYSlider" Minimum="0" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True" SmallChange="1" LargeChange="10" ValueChanged="OnPositionSliderChanged" />
+                </DockPanel>
+                <ComboBox Name="PositionComboBox" Margin="0,0,0,12" SelectionChanged="OnPositionComboChanged">
+                  <ComboBoxItem Content="-- 快速定位 --" Tag="custom" IsSelected="True" />
+                  <ComboBoxItem Content="🎯 正中央" Tag="center" />
+                  <ComboBoxItem Content="↖ 左上角" Tag="top-left" />
+                  <ComboBoxItem Content="↗ 右上角" Tag="top-right" />
+                  <ComboBoxItem Content="↙ 左下角" Tag="bottom-left" />
+                  <ComboBoxItem Content="↘ 右下角" Tag="bottom-right" />
+                </ComboBox>
+                <CheckBox Name="AlwaysOnTopCheckBox" Content="始終置頂" Margin="0,0,0,5" />
+                <CheckBox Name="StartWithWindowsCheckBox" Content="開機自動啟動" />
+              </StackPanel>
+            </GroupBox>
+          </StackPanel>
+        </ScrollViewer>
+      </TabItem>
+      <TabItem Header="🎨 外觀" FontSize="14" FontWeight="SemiBold">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="4">
+          <StackPanel Margin="8">
+            <GroupBox Header="🌓 主題模式">
+              <StackPanel>
+                <ComboBox Name="ThemeModeComboBox" Margin="0,0,0,10" SelectionChanged="OnThemeChanged">
+                  <ComboBoxItem Content="🌓 自動 (跟隨系統)" Tag="Auto" />
+                  <ComboBoxItem Content="☀️ 亮色模式" Tag="Light" />
+                  <ComboBoxItem Content="🌙 暗色模式" Tag="Dark" />
+                  <ComboBoxItem Content="🖌️ 自訂顏色" Tag="Custom" />
+                </ComboBox>
+                <StackPanel Name="CustomColorPanel" Visibility="Collapsed" Margin="0,0,0,8">
+                  <TextBlock Text="自訂顏色 (Hex):" FontWeight="Normal" Margin="0,0,0,5" />
+                  <TextBox Name="TextColorBox" Text="#FFFFFF" Padding="6" />
+                </StackPanel>
+                <CheckBox Name="SystemAccentCheckBox" Content="使用系統強調色" Checked="OnAccentColorChecked" Unchecked="OnAccentColorUnchecked" />
+                <StackPanel Name="ColorAdjPanel" Orientation="Horizontal" Margin="24,8,0,0" Visibility="Collapsed">
+                  <TextBlock Text="微調:" FontWeight="Normal" Margin="0,0,8,0" />
+                  <ComboBox Name="ColorAdjComboBox" Width="100">
+                    <ComboBoxItem Content="默認" Tag="None" />
+                    <ComboBoxItem Content="加亮" Tag="Brighten" />
+                    <ComboBoxItem Content="變暗" Tag="Darken" />
+                  </ComboBox>
+                </StackPanel>
+              </StackPanel>
+            </GroupBox>
+            <GroupBox Header="✏️ 字重">
+              <ComboBox Name="FontWeightComboBox">
+                <ComboBoxItem Content="極細 (Light)" Tag="Light" />
+                <ComboBoxItem Content="正常 (Normal)" Tag="Normal" />
+                <ComboBoxItem Content="半粗 (SemiBold)" Tag="SemiBold" />
+                <ComboBoxItem Content="粗體 (Bold)" Tag="Bold" />
+              </ComboBox>
+            </GroupBox>
+            <GroupBox Header="🔮 不透明度">
+              <StackPanel>
+                <DockPanel Margin="0,0,0,5">
+                  <TextBlock Text="時鐘不透明度:" DockPanel.Dock="Left" FontWeight="Normal" />
+                  <TextBlock DockPanel.Dock="Right" Text="{Binding ElementName=OpacitySlider, Path=Value, StringFormat=P0}" />
+                </DockPanel>
+                <Slider Name="OpacitySlider" Minimum="0.1" Maximum="1.0" Value="1.0" TickFrequency="0.1" IsSnapToTickEnabled="True" SmallChange="0.1" LargeChange="0.2" />
+              </StackPanel>
+            </GroupBox>
+            <GroupBox Header="💫 陰影效果">
+              <StackPanel>
+                <CheckBox Name="ShowShadowCheckBox" Content="啟用陰影" IsChecked="True" Margin="0,0,0,10" />
+                <DockPanel Margin="0,0,0,5">
+                  <TextBlock Text="模糊半徑:" DockPanel.Dock="Left" FontWeight="Normal" />
+                  <TextBlock DockPanel.Dock="Right" Text="{Binding ElementName=ShadowBlurSlider, Path=Value, StringFormat=N0}" />
+                </DockPanel>
+                <Slider Name="ShadowBlurSlider" Minimum="0" Maximum="20" Value="8" IsSnapToTickEnabled="True" TickFrequency="1" SmallChange="1" LargeChange="5" Margin="0,0,0,10" />
+                <TextBlock Text="陰影顏色 (Hex):" FontWeight="Normal" Margin="0,0,0,5" />
+                <TextBox Name="ShadowColorBox" Text="#000000" Padding="6" />
+              </StackPanel>
+            </GroupBox>
+          </StackPanel>
+        </ScrollViewer>
+      </TabItem>
+      <TabItem Header="🌐 時區" FontSize="14" FontWeight="SemiBold">
+        <StackPanel Margin="12">
+          <GroupBox Header="🕐 時區選擇">
+            <StackPanel>
+              <TextBlock Text="當前顯示時區:" FontWeight="Normal" Margin="0,0,0,5" />
+              <ComboBox Name="TimeZoneComboBox" Margin="0,0,0,12" Height="28" />
+              <Button Content="🔄 刷新線上時區列表" Style="{StaticResource SecondaryButton}" HorizontalAlignment="Left" Click="OnRefreshTimeZonesClick" />
+              <TextBlock Name="TimeZoneStatusText" Text="使用本地系統時區" Foreground="#888" FontSize="11" Margin="0,8,0,0" />
+            </StackPanel>
+          </GroupBox>
+        </StackPanel>
+      </TabItem>
+      <TabItem Header="ℹ️ 關於" FontSize="14" FontWeight="SemiBold">
+        <StackPanel Margin="12">
+          <GroupBox Header="桌面時鐘">
+            <StackPanel>
+              <TextBlock Text="桌面時鐘 v2.3" FontSize="18" FontWeight="Bold" Foreground="#0078D4" />
+              <TextBlock Text="極簡筆電版" FontSize="12" Foreground="#666" Margin="0,2,0,12" />
+              <TextBlock Text="技術棧" FontWeight="SemiBold" Margin="0,0,0,5" />
+              <TextBlock Text="• C# WPF / .NET 8.0" FontWeight="Normal" Foreground="#555" />
+              <TextBlock Text="• 專為低功耗設計" FontWeight="Normal" Foreground="#555" Margin="0,0,0,12" />
+              <TextBlock Text="更新記錄" FontWeight="SemiBold" Margin="0,0,0,5" />
+              <TextBlock Text="v2.3: 控制台翻新、解除安裝功能" FontWeight="Normal" Foreground="#555" />
+              <TextBlock Text="v2.2: 日期顯示、透明度、啟動優化" FontWeight="Normal" Foreground="#555" />
+              <TextBlock Text="作者: 林楷庭 / kaiting LIn (lin3310)" FontWeight="Normal" Foreground="#555" Margin="0,8,0,2" />
+              <TextBlock Text="License: MIT" FontWeight="Normal" Foreground="#555" />
+              <TextBlock Text="為甚麼我要做這個?" FontWeight="SemiBold" Margin="0,8,0,2" />
+              <TextBlock Text="甚麼叫做我只是要個時鐘還要Rainmeter/桌布引擎？" FontWeight="Normal" Foreground="#555" />
+            </StackPanel>
+          </GroupBox>
+        </StackPanel>
+      </TabItem>
+    </TabControl>
+    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+      <Button Content="保存並應用" IsDefault="True" Style="{StaticResource PrimaryButton}" Click="SaveButton_Click" />
+      <Button Content="取消" IsCancel="True" Margin="10,0,0,0" Style="{StaticResource SecondaryButton}" />
+    </StackPanel>
+  </Grid>
+</Window>
